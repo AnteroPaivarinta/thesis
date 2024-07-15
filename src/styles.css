@@ -1,0 +1,225 @@
+h1 {
+    
+}
+
+.columnLabel {
+  width: 55%;
+  height: 15%;
+  color: white;
+  font-size: 1.5vh;
+}
+
+.columnLabelFreeText {
+  width: 27%;
+  height: 2%
+}
+
+.daysContainer {
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+}
+
+.checkbox {
+  height: 3vh;
+  width: 3vw;
+  align-self: center;
+  justify-content: center;
+}
+
+
+.dayLabel {
+  color: white;
+  font-size: 1vh;
+  align-self: center;
+  justify-self: center;
+}
+
+.taskLabel {
+  color: white;
+  font-size: 3;
+  height: 20%;
+  width: 100%;
+}
+
+p span {
+  display: block;
+}
+
+.scroll-box {
+  height: 20vh;
+  width: 100%;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+}
+
+.row {
+  display: flex;
+  height: 30%;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.square {
+  flex-direction: column;
+  height: 100%;
+  margin: 0.1%;
+  display: flex;
+  width: 8%;
+  border-color: #515c4c;
+  border-style: solid;
+  border-color: green;
+  border-width: 3px;
+  border-radius: 5px;
+  align-items: flex-end;
+  flex-grow: 0;
+}
+
+.taskDropDown {
+  width: 100%;
+  height: 10%;
+  border-color: purple;
+  background-color: aquamarine;
+}
+
+.taskSelectedListItem {
+  inline-size: 100px;
+  width: 17%;
+  height: 25%;
+  background-color: white;
+  border-radius: 10px;
+  font-size: x-small;
+  text-align: center;
+  margin: 2px;
+  flex-grow: 0; /* Estää elementtien kasvamisen ylimääräisen tilan saatavilla ollessa */
+  display: flex; /* Käytetään flexboxia sisällön keskittämiseen */
+  justify-content: center; /* Keskittää vaakasuunnassa */
+  align-items: center; /* Keskittää pystysuunnassa */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.dynamic-button {
+  font-size: 1em; /* Oletuskoko */
+  padding: 10px 20px;
+  background-color: white;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Lisää media queryt tarvittaessa esim. eri näyttökooille */
+@media (max-width: 768px) {
+  .dynamic-button {
+    font-size: 0.8em;
+  }
+}
+
+.fontIcon {
+  flex: 'display';
+  align-items: flex-start;
+  font-size: 10px;
+  color: white;
+}
+
+.taskList {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 45%;
+  border-radius: 10px;
+}
+
+.inputStyle {
+  width: 45%;
+  border-style: solid;
+  border-radius: 5px;
+  resize: vertical;
+  margin-top: 3px;
+}
+
+.star {
+ color:'grey';
+ width: 3%;
+ height: 3%;
+}
+
+
+
+
+
+.inputStyleTshirtTwo {
+  width: 45%;
+  border-radius: 5px;
+  resize: vertical;
+  margin-top: 3px;
+}
+
+
+
+.multiSelect {
+  max-width: 20%;
+}
+
+
+.inputStyleTshirt {
+ 
+  max-height: 60%;
+  min-width: 300%;
+  max-width: 300%;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+.icon {
+  height: 40%;
+  width: 40%;
+  align-self: center;
+  display: flex;
+  margin-top: 10%;
+}
+.modal{
+  background-color: white;
+  height: 80%;
+  width: 60%;
+  align-self: center;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+}
+
+.inputStyleFreeText {
+  width: 45%;
+  border-style: solid;
+  border-radius: 5px;
+  resize: vertical;
+  margin-top: 3px;
+}
+
+
+.smallInput {
+  width: 60%;
+  margin-left: 50;
+  border-style: solid;
+  border-radius: 5px;
+  resize: vertical;
+  margin-top: 3px;
+
+}
