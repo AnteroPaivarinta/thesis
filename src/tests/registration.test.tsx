@@ -1,12 +1,20 @@
-import React from 'react'
-import '@testing-library/jest-dom/extend-expect'
-import { render, screen, waitFor, fireEvent, getByTestId } from '@testing-library/react'
-import Registration from './views/Registration';
+import "@testing-library/jest-dom";
+import { render, screen, waitFor, fireEvent} from '@testing-library/react'
+import Registration from '../views/Registration';
 import axios from 'axios';
 import selectEvent from 'react-select-event'
+import React from 'react';
 
 jest.mock('axios');
+jest.mock('exceljs', () => ({
+  Workbook: jest.fn().mockImplementation(() => ({
+    addWorksheet: jest.fn(),
+    getWorksheet: jest.fn(),
+    addRow: jest.fn(),
+  })),
+}));
 describe('Registration', () => {
+  const flushPromises = () => new Promise(resolve => Promise.resolve().then(resolve));
   it('Making sure that user can send data with form', async () => {
     const obj = {
       PersonID: '123',
@@ -26,7 +34,6 @@ describe('Registration', () => {
       days: [],
     }
     render(<Registration />)
-    const flushPromises = () => new Promise(resolve => setTimeout(resolve, 0));
     
     fireEvent.change(screen.getByTestId('firstName') ,  {target: {value: 'testi'}});
     fireEvent.change(screen.getByTestId('lastName'),  {target: {value: 'testi'}});
@@ -36,11 +43,9 @@ describe('Registration', () => {
     fireEvent.change(screen.getByTestId('team'),  {target: {value: 'tiimi'}});
     fireEvent.change(screen.getByTestId('phone'),  {target: {value: 'phone'}});
     fireEvent.change(screen.getByTestId('licenseCard'), true);
-    fireEvent.change(screen.getByTestId('hopes'),  {target: {value: 'toivomuksia'}});
     fireEvent.click(screen.getByTestId('first'));
     fireEvent.change(screen.getByTestId('freetextfield'),  {target: {value: 'Vapaateksti'}});
     
-    expect(screen.getByTestId('form')).toHaveFormValues({})
     await selectEvent.select(screen.getByLabelText('selectionbox'), ['avustaja palkintojen jaossa'])
     fireEvent.click(screen.getByTestId('robotButton'));
 

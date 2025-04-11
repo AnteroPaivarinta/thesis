@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import kuva from '../kuva.png';
-import { IData, ITaskOption } from '../types';
+import { IData } from '../types';
 import '../styles.css';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
@@ -9,8 +8,6 @@ import Select from 'react-select';
 import Switch from "react-switch";
 import Tasks from '../components/tasks';
 import ConfirmModal from '../components/Modal';
-import validator from 'validator';
-import isEmail from 'validator/lib/isEmail';
 
 
 const Registration = () => {

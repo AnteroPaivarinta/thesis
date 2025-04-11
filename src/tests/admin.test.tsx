@@ -1,12 +1,13 @@
-import React from 'react'
-import '@testing-library/jest-dom/extend-expect'
-import { render, screen, waitFor, fireEvent, getByTestId } from '@testing-library/react'
-import Admin from './views/Admin';
-import { mockObject } from '../__mocks__/axios';
+import "@testing-library/jest-dom";
+import { render, screen, waitFor, fireEvent } from '@testing-library/react'
+import Admin from '../views/Admin';
 import axios from 'axios';
 
 jest.mock('axios');
+
 describe('Admin', () => {
+
+  const flushPromises = () => new Promise(resolve => Promise.resolve().then(resolve));
   
   it('Making sure that admin can log in and see data', async () => {
     const obj = {
@@ -26,7 +27,7 @@ describe('Admin', () => {
       date: '123',
       days: [],
     }
-    const flushPromises = () => new Promise(setImmediate);
+    
     const mockedAxios = axios as jest.Mocked<typeof axios>; 
     mockedAxios.get.mockResolvedValueOnce({ data: [obj] });
     mockedAxios.post.mockResolvedValueOnce({ data: {loginResponse: 'Right user and password'}} );
@@ -71,7 +72,7 @@ describe('Admin', () => {
       date: '123',
       days: [],
     }
-    const flushPromises = () => new Promise(setImmediate);
+    const flushPromises = () => new Promise(resolve => Promise.resolve().then(resolve));
     const mockedAxios = axios as jest.Mocked<typeof axios>; 
     mockedAxios.get.mockResolvedValueOnce({ data: [obj] });
     mockedAxios.post.mockResolvedValueOnce({ data: {loginResponse: 'Right user and password'}} );
@@ -125,7 +126,7 @@ describe('Admin', () => {
       date: '123',
       days: [],
     }
-    const flushPromises = () => new Promise(setImmediate);
+    
     const mockedAxios = axios as jest.Mocked<typeof axios>; 
     mockedAxios.get.mockResolvedValueOnce({ data: [obj] });
     mockedAxios.post.mockResolvedValueOnce({ data: {loginResponse: 'Right user and password'}} );
