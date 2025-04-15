@@ -17,8 +17,8 @@ const Admin = () => {
       password: ''
     });
     
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+    const [screenWidth ] = useState(window.innerWidth);
+    const [screenHeight] = useState(window.innerHeight);
     const [logResponse, setLogResponse ] = useState(false);
     const [rowData, setRowData] = useState<IDataIndex[]>([]);
     const [updatedRowData, setUpdatedRowData] = useState<IDataIndex[]>([]);

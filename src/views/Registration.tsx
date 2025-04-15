@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import kuva from '../kuva.png';
 import { IData } from '../types';
 import '../styles.css';
@@ -12,8 +12,8 @@ import ConfirmModal from '../components/Modal';
 
 const Registration = () => {
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [screenWidth ] = useState(window.innerWidth);
+  const [screenHeight ] = useState(window.innerHeight);
   const [inputs, setInputs] = useState < IData >
   ({
     PersonID: 'thgrth',
@@ -54,13 +54,6 @@ const Registration = () => {
   const [errorMessage, setErrorMessage ] = useState('');
   const [validInputError, setValidInputError ] = useState('');
   const [showModal, setShowModal] = useState(false);
-  
-
-  const items = Array.from({ length: 20 }, (_, index) => ({
-    id: index,
-    label: `Label ${index}`,
-    checked: false,
-  }));
 
   const box = () => {
     return (

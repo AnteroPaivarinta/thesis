@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { useState } from 'react';
+import {  NavLink } from "react-router-dom";
 import '../App.css';
 import kuva from '../kuva.png';
 import '../styles.css';
 
 const Main = () => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [screenHeight ] = useState(window.innerHeight);
   return (
     <div style={{ backgroundImage: `url(${kuva})`, backgroundRepeat: 'no-repeat' , maxHeight: screenHeight,  minHeight: screenHeight , height: '100vh', backgroundSize: '100% 100%',  width: '100vw' }}>
         <div style={{ display:'flex', flexDirection: 'row', justifyContent: 'flex-end', width:'100%', height: '5%'}}>

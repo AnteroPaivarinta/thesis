@@ -1,9 +1,7 @@
-import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
-import Multiselect from 'multiselect-react-dropdown';
 import '../styles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight, faCircleXmark} from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark} from '@fortawesome/free-solid-svg-icons'
 const SelectBoxes = (props: any) => {
   const selectedValues = props.selectedValues.map((value:any) => value.label)
   const options = [
