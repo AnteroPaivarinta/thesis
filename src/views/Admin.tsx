@@ -9,7 +9,7 @@ import FileSaver from 'file-saver';
 
 const Admin = () => {
   ///13.51.169.250
-    const ip = 'https://13.51.169.250'; 
+    const ip = 'http://localhost:3001'; 
     
     const [inputs, setInputs] = useState< IAdmin >
     ({

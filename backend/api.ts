@@ -215,6 +215,7 @@ app.post('/userData', async function(req: any,res: any) {
     subject: 'Ilmoittautumisvahvistus',
     text: total,
   };
+  
   transporter.sendMail(mailOptions, function(error:any, info:any){
     if (error) {
       console.log(error);

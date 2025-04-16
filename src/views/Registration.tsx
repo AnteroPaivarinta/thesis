@@ -74,8 +74,7 @@ const Registration = () => {
         </div>
     );
   }
-  //https://13.51.169.250
-  const ip =  'https://13.51.169.250'; 
+  const ip = 'http://localhost:3001'; 
   const options = [
     { value: 'XS', label: 'XS' },
     { value: 'S', label: 'S' },
