@@ -4,9 +4,9 @@ import mysql from 'mysql2';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import aws from 'aws-sdk';
+//import aws from 'aws-sdk';
 import cryptoNodejs from 'crypto';
-
+import { connection } from './db.ts';
 
 const app = express();
 const jwtKey = "kalevakoodi";
@@ -46,53 +46,30 @@ const verifyUserToken = (req:any, res: any, next: any) => {
   }
 };
 
-const connection = mysql.createConnection({
-  host     : process.env.WEB_HOSTNAME,
-  user     : process.env.WEB_USERNAME,
-  password : process.env.WEB_PASSWORD,
-  port     : PORT
-});
 console.log(process.env.WEB_HOSTNAME, process.env.WEB_USERNAME, process.env.WEB_PASSWORD, PORT)
 
-connection.connect(function(err: any) {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
-  console.log('Connected to database.');
-});
+
 connection.query(use);
 let dataArray: any[] = [];
 connection.query("SELECT * FROM PERSON", function (err:any, result:any, fields:any) {
- 
-  const array = JSON.parse(JSON.stringify(result))
-  dataArray.push(...array);
-
+  if (err) {
+    console.error("Database query error:", err);
+    return;
+  }
+  if (result) {
+    console.log("Result", result)
+    const array = JSON.parse(JSON.stringify(result))
+    dataArray.push(...array);
+  } else {
+    console.log("No results found.");
+  }
 });
-connection.end();
 
 app.use(cors())
 app.use(express.json())
-
-
-app.get('/test23',  function(req:any ,res:any) {
-  res.send('HELLO WORLD');
-});
  
 app.post('/admin', async (req:any, res:any) => {
-  const connection = mysql.createConnection({
-    host     : process.env.webHostName,
-    user     : process.env.webUserName,
-    password : process.env.webPassword,
-    port     : PORT
-  });
-  connection.connect(function(err:any) {
-    if (err) {
-      console.error('Database connection failed: ' + err.stack);
-      return;
-    }
-    console.log('Connected to database.');
-  });
+ 
   const { user, password } = req.body;
   let emailHash = cryptoNodejs.createHash(algorithm).update(user).digest("hex")
   let passwordHash = cryptoNodejs.createHash(algorithm).update(password).digest("hex")
@@ -136,15 +113,10 @@ app.post('/admin/verify', async (req: any, res: any) => {
 
 
 app.post('/userData', async function(req: any,res: any) {
-  const connection = mysql.createConnection({
-    host     : process.env.webHostName,
-    user     : process.env.webUserName,
-    password : process.env.webPassword,
-    port     : PORT
-  });
+
+  
   const object = req.body;
-  console.log('R',req.body)
-  console.log(connection)
+  console.log('Object',req.body)
 
   const licenseCard = object.licenseCard === true? 1 : 0
   let tasks = object.tasks;
@@ -163,13 +135,7 @@ app.post('/userData', async function(req: any,res: any) {
       arrayDays.push('30.6.2024')
     }
   }
-  connection.connect(function(err: any) {
-    if (err) {
-      console.error('Database connection failed: ' + err.stack);
-      return;
-    }
-    console.log('Connected to database.');
-  });
+  
   connection.query(use);
   const sql = `INSERT INTO PERSON VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
   const nyt = new Date();
@@ -190,7 +156,6 @@ app.post('/userData', async function(req: any,res: any) {
       nyt.toString(),
   ]);
 
-  connection.end();
   dataArray.push(req.body);
   const message = 'Hei, olet ilmoittanut Kalevan 2024 kisoihin näillä tiedoilla:\n ';
   const firstNameLine = `Etunimi: ${object.firstName} \n`
@@ -228,7 +193,7 @@ app.post('/userData', async function(req: any,res: any) {
 });
 
 
-app.put('/userData', function(req: any,res: any) {
+app.put('/userData', async function(req: any,res: any) {
   const {
     firstName,
     lastName,
@@ -242,29 +207,9 @@ app.put('/userData', function(req: any,res: any) {
     tshirt,
     PersonID,
   } = req.body.data;
-
-  const connection = mysql.createConnection({
-    host     : process.env.webHostName,
-    user     : process.env.webUserName,
-    password : process.env.webPassword,
-    port     : PORT
-  });
-
-  connection.connect(function(err:any) {
-    if (err) {
-      console.error('Database connection failed: ' + err.stack);
-      return;
-    }
-    console.log('Connected to database.');
-  });
-
-
   connection.query(use);
   const sql = `UPDATE PERSON SET firstName = ?, lastName = ?, age = ?, email =?, gender = ?, phone =?, tshirt =?, team =? , freeText = ?, hopes =? WHERE PersonID =?`;
   connection.query(sql, [firstName, lastName, age, email, gender, phone, tshirt, team, freeText, hopes, PersonID]);
-  connection.end();
-  
-
   return res.status(200).send('made query');
 });
 
@@ -276,28 +221,12 @@ app.get('/userData', verifyUserToken,  function(req:any, res:any) {
 
 
 app.delete('/delete/:id', function(req:any,res:any) {
-
-  const connection = mysql.createConnection({
-    host     : process.env.webHostName,
-    user     : process.env.webUserName,
-    password : process.env.webPassword,
-    port     : PORT
-  });
   
   let id = req.params.id;
   const deleteQuery = `DELETE FROM PERSON WHERE PersonID ='${id}';`;
-  connection.connect(function(err:any ) {
-    if (err) {
-      console.error('Database connection failed: ' + err.stack);
-      return;
-    }
-    console.log('Connected to database.');
-  });
 
   connection.query(use);
   connection.query(deleteQuery);
-  connection.end();
-
   let array = dataArray.filter((value) => value.PersonID != id);
   dataArray = array;
   return res.status(200).send(array);
@@ -306,4 +235,4 @@ app.delete('/delete/:id', function(req:any,res:any) {
 const PORT_API = 3001
 app.listen(PORT_API, () => {
     console.log(`Server running on port ${PORT_API}`)
-  })
+})
