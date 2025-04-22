@@ -8,7 +8,7 @@ import * as ExcelJS from 'exceljs';
 import FileSaver from 'file-saver';
 
 const Admin = () => {
-  ///13.51.169.250
+
     const ip = 'http://localhost:3001'; 
     
     const [inputs, setInputs] = useState< IAdmin >
@@ -27,6 +27,7 @@ const Admin = () => {
     const [adiminObject, setAdminObject ] = useState<IAdminObject>({inputVerify: false, token:'', loginResponse: false});
     const [filterInput, setFiterInput] = useState<string>('');
     const [error, setError] = useState<string>('');
+    
     const handleChange = (event:any) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -177,7 +178,6 @@ const Admin = () => {
         axios.get(`${ip}/userData`, config)
         .then(function (response) {
           const array = response.data;
-          console.log('ARRAY', array)
           const newRowData: any[] = [];
           array.forEach((element: IData, index:number) => {
             newRowData.push({index: index, data:element, update: false })

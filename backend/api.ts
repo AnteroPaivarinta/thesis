@@ -5,13 +5,12 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 //import aws from 'aws-sdk';
-import cryptoNodejs from 'crypto';
+import SHA256 from 'crypto-js/sha256.js';
 import { connection } from './db.ts';
 
 const app = express();
 const jwtKey = "kalevakoodi";
 const use = "USE app_database;";
-const algorithm = "sha256";
 const jwtSecret = '123'; // TODO, Suojaa JWT
 const jwtExpirySeconds = 300;
 const PORT = 3307;
@@ -71,8 +70,8 @@ app.use(express.json())
 app.post('/admin', async (req:any, res:any) => {
  
   const { user, password } = req.body;
-  let emailHash = cryptoNodejs.createHash(algorithm).update(user).digest("hex")
-  let passwordHash = cryptoNodejs.createHash(algorithm).update(password).digest("hex")
+  let emailHash = user;
+  let passwordHash = SHA256(password).toString();
   const sqlQuery = `SELECT * FROM ADMIN WHERE email ='${emailHash}';`
   connection.query(use);
   connection.query(sqlQuery, async function (err:any, result:any, fields:any) {

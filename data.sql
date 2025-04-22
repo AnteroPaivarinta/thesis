@@ -30,5 +30,6 @@ CREATE TABLE PERSON (
     created_at VARCHAR(100)
 );
 
-INSERT INTO ADMIN (email, password) VALUES
-    (SHA2('antero.paivarinta@gmail.com', 256), SHA2('securepassword', 256));
+INSERT INTO ADMIN (email, password) 
+VALUES ('antero.paivarinta@gmail.com', SHA2('securepassword', 256));
+
