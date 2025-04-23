@@ -22,7 +22,7 @@ const Admin = () => {
     const [logResponse, setLogResponse ] = useState(false);
     const [rowData, setRowData] = useState<IDataIndex[]>([]);
     const [updatedRowData, setUpdatedRowData] = useState<IDataIndex[]>([]);
-    const [inputCode, setInpuCode] = useState<string>('');
+    const [inputCode, setInputCode] = useState<string>('');
     const [inputVerify, setInputVerify] = useState<boolean>(false);
     const [adiminObject, setAdminObject ] = useState<IAdminObject>({inputVerify: false, token:'', loginResponse: false});
     const [filterInput, setFiterInput] = useState<string>('');
@@ -47,7 +47,7 @@ const Admin = () => {
     }
 
     const sendVerifyCode = () => {
-      axios.post(`${ip}/admin/verify`, inputCode).then((response) => {
+      axios.post(`${ip}/admin/verify`, {inputCode: inputCode}).then((response) => {
         
         console.log('Post succesful', response);
         if(response.data.token){
@@ -73,7 +73,7 @@ const Admin = () => {
     }
     
     const onDelete = (PersonID: string) => {
-      axios.delete(`${ip}/delete/`+PersonID).then((response) => {
+      axios.delete(`${ip}/delete/`+ PersonID).then((response) => {
         const newRowData: any[] = [];
         console.log('Response', response)
         response.data.forEach((element: IData, index:number) => {
@@ -220,7 +220,7 @@ const Admin = () => {
          
           { (inputVerify ) && 
             <div style={{color:'black'}}>
-              <input value={inputCode} onChange={(e) => setInpuCode(e.target.value)}></input> 
+              <input value={inputCode} onChange={(e) => setInputCode(e.target.value)}></input> 
               <button data-testid='sendCode' onClick={() => sendVerifyCode()}> SEND VERIFY CODE</button> 
             </div>}
        

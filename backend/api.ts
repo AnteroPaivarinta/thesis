@@ -14,11 +14,10 @@ const use = "USE app_database;";
 const jwtSecret = '123'; // TODO, Suojaa JWT
 const jwtExpirySeconds = 300;
 const PORT = 3307;
+let verifyCode: string | null = null;
+
 
 dotenv.config();
-
-
-
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -78,12 +77,13 @@ app.post('/admin', async (req:any, res:any) => {
     if (err) throw err;
     const userData = result[0];
     if (emailHash === userData.email && userData.password === passwordHash) {
-      let code = Math.floor(1000 + Math.random() * 9000);
+      let code = Math.floor(1000 + Math.random() * 9000).toString();
+      verifyCode = code;
       let mailOptions = {
         from: process.env.EMAIL_USER,
         to: user,
         subject: 'Verify  Code',
-        text: code.toString(),
+        text: code,
       };
       transporter.sendMail(mailOptions, function(error:any, info:any){
         if (error) {
@@ -92,7 +92,7 @@ app.post('/admin', async (req:any, res:any) => {
           console.log('Email sent: ' + info.response);
         }
       });
-      return res.status(200).send({ loginResponse: 'Right user and password', code});
+      return res.status(200).send({ loginResponse: 'Right user and password'});
     } else {
       return res.status(401).send("Wrong password");
     }
@@ -101,9 +101,9 @@ app.post('/admin', async (req:any, res:any) => {
 
 app.post('/admin/verify', async (req: any, res: any) => {
   
-  const {inputCode, code} = req.body;
-  if (inputCode === code) {
-    let token = jwt.sign({ foo: 'bar' }, jwtSecret);
+  const {inputCode} = req.body;
+  if (inputCode === verifyCode) {
+    let token = jwt.sign({foo: 'bar'}, jwtSecret);
     return res.status(200).send({token: token});
   } else {
     return res.status(401).send("Wrong verify code");
@@ -115,8 +115,6 @@ app.post('/userData', async function(req: any,res: any) {
 
   
   const object = req.body;
-  console.log('Object',req.body)
-
   const licenseCard = object.licenseCard === true? 1 : 0
   let tasks = object.tasks;
   let days = object.days;
