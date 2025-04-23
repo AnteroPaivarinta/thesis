@@ -20,13 +20,13 @@ const Main = () => {
         <div style={{ display: 'flex', alignItems: 'center', width: '100%', height: '90%'}}>
           <div style={{display: 'flex', flexDirection: 'row', alignItems:'center', height: '100%', width: '100%', justifyContent: 'center' }}>
             <div style={{ height:'100%', width: '60%'}}>
-              <h1 style={{color:'white'}}>Kalevan kisat 2024</h1>
+              <h1 style={{color:'white'}}>Kisat 2024</h1>
               <h2><p><span>Ilmoittautuminen</span><span>Anmälan</span></p> </h2>
               <hr></hr>
               <h3 style={{color:'white'}}>
                 <p>
-                  <span style={{fontSize: 13}}> Ilmoittaudu tässä Vaasan 2024 Kalevan kisojen vapaaehtoiseksi toimitsijaksi. Saat kuittauksen ilmoittautumisesta annettuun sähköpostiin. Otamme sinuun yhteyttä. Tervetuloa mukaan! </span>
-                  <span style={{fontSize: 13}}> Här anmäler Du dig som frivillig funktionär till Kalevan kisat 2024 i Vasa. Du får en kvittering på gjord anmälan till den epost som angivits. Vi kontaktar Dig. Välkommen med!</span>
+                  <span style={{fontSize: 13}}> Ilmoittaudu tässä  kisojen vapaaehtoiseksi toimitsijaksi. Saat kuittauksen ilmoittautumisesta annettuun sähköpostiin. Otamme sinuun yhteyttä. Tervetuloa mukaan! </span>
+                  <span style={{fontSize: 13}}> Här anmäler Du dig som frivillig funktionär till Kisat 2024. Du får en kvittering på gjord anmälan till den epost som angivits. Vi kontaktar Dig. Välkommen med!</span>
                 </p>
               </h3>
               <button className="dynamic-button">
