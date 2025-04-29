@@ -18,6 +18,10 @@
     "noUnusedParameters": false,
     
   },
+  "exclude": [
+    "node_modules", 
+    "src/tests/**/*"
+  ],
   "ts-node": {
     "esm": true
   },
