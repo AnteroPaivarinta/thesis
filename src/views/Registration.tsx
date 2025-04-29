@@ -1,3 +1,4 @@
+// @ts-ignore: React is needed for JSX, even if not explicitly used
 import React, { useState } from 'react';
 import kuva from '../kuva.png';
 import { IData } from '../types';
@@ -16,9 +17,9 @@ const Registration = () => {
   const [screenHeight ] = useState(window.innerHeight);
   const [inputs, setInputs] = useState < IData >
   ({
-    PersonID: 'thgrth',
+    PersonID: '1',
     email: '',
-    tshirt: 'M', 
+    tshirt: '', 
     gender: '', 
     phone: '', 
     freeText:'',
@@ -115,9 +116,7 @@ const Registration = () => {
   }
 
   const handleSubmit = () => {
-    console.log("TEST!");
     if ( !checkValidInputs() ){
-      console.log('Inputs', inputs)
       setValidInputError('Tähdellä merkittyjä tekstikenttiä ei ole täytetty. Täytä tarvittavat tekstikentät.')
     } else {
       setValidInputError('')
@@ -142,7 +141,7 @@ const Registration = () => {
         setShowModal(true);
         setLogResponseMessage('Kiitos ilmoittautumisestisi - Otamme sinuun yhteyttä | Tack för anmälan - Vi kontaktar Dig senare!')
       }).catch((error) => {
-        console.log('Error123', error)
+        console.log('Error', error)
         setErrorMessage('Tietojen lähettäminen epäonnistui. Ota yhteyttä ylläpitäjään..')
       });
     }
