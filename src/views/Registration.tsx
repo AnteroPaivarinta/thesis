@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import kuva from '../kuva.png';
 import { IData } from '../types';
 import '../styles.css';
@@ -100,8 +100,6 @@ const Registration = () => {
     }
   }
 
-
-
   const handleChange = (event:any) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -117,6 +115,7 @@ const Registration = () => {
   }
 
   const handleSubmit = () => {
+    console.log("TEST!");
     if ( !checkValidInputs() ){
       console.log('Inputs', inputs)
       setValidInputError('Tähdellä merkittyjä tekstikenttiä ei ole täytetty. Täytä tarvittavat tekstikentät.')
@@ -130,11 +129,9 @@ const Registration = () => {
       let year = date.getFullYear();
       let currentDate = `${day}-${month}-${year}`;
       for (const [key, value] of Object.entries(inputs.tasks)) {
-        console.log('VALUE', value, 'KEY', key)
         if ( value === true) {
           const taskItem = Tasks.find((ob) => ob.value === key);
           if (taskItem) {
-            console.log('HEWEWEGO', taskItem.label)
             array.push(taskItem?.label)
           }
         }
@@ -151,7 +148,6 @@ const Registration = () => {
     }
 
   };
-
   return (
     <div style={{ display: 'flex' ,backgroundImage: `url(${kuva})`, backgroundRepeat: 'no-repeat', minHeight: screenHeight , backgroundSize: 'cover',  minWidth: screenWidth, alignItems: 'center', justifyContent: 'center' }}>
         
@@ -237,11 +233,15 @@ const Registration = () => {
               </div>
               <div style={{display: 'flex', flexDirection:  'row', width: '100%'}}>
                 <label className='columnLabel'>Unisex koko/storlek *</label>
-                <Select className='inputStyleTshirtTwo' value={{label: inputs.tshirt, value: inputs.tshirt}} options={options}  onChange={(e) => selectHandleChange(e)}   />
+                <Select  
+                  className='inputStyleTshirtTwo'
+                  value={{label: inputs.tshirt, value: inputs.tshirt}} 
+                  options={options}  
+                  onChange={(e) => selectHandleChange(e)}
+                />
               </div> 
               <div style={{display: 'flex', flexDirection:  'row', width: '100%'}}>
                 <label className='columnLabel'>Onko sinulla toimitsijakortti? | Har du domarkort? *</label>
-              
                 <Switch data-testid='licenseCard' onChange={handleLicenseCard} checked={inputs.licenseCard}  />
               </div>
               <div style={{display: 'flex', flexDirection:  'row', width: '100%', height: '1%'}}>
@@ -257,7 +257,6 @@ const Registration = () => {
                   <input data-testid='second' className='checkbox' type="checkbox" onClick={() => setInputs({...inputs, days: {...inputs.days, second: !inputs.days.second}})} /> <p className='dayLabel'>29.6</p>
                   <input data-testid='third' className='checkbox' type="checkbox" onClick={() => setInputs({...inputs, days: {...inputs.days, third: !inputs.days.third}})} /> <p className='dayLabel'>30.6</p>
                 </div>
-               
               </div>
               <div style={{display: 'flex', flexDirection:  'row', width: '100%'}}>
                 <label className='columnLabel'> Vapaat kommentit | Fria kommentarer *</label>
@@ -276,7 +275,7 @@ const Registration = () => {
               { validInputError ? <p style={{color:'red'}}> {validInputError}</p> : null }
             </form>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignSelf: 'center'}}>
-              <button type="submit"  onClick={() => handleSubmit()} data-testid='sendButtonTwo' disabled={!checked} > LÄHETÄ </button> 
+              <button type="submit" onClick={() => handleSubmit()} data-testid='sendButtonTwo' disabled={!checked} > LÄHETÄ </button> 
               <div style={{flexDirection:'row', display: 'flex'}}>
                 <input data-testid='robotButton' type="checkbox" onClick={() => setChecked(!checked)} /> <div style={{color: 'white'}}>En ole robotti</div>
               </div>
