@@ -13,10 +13,11 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noUnusedLocals": false
   },
   "ts-node": {
     "esm": true
   },
-  "noUnusedLocals": false
+  
 }
