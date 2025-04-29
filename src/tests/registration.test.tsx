@@ -1,6 +1,6 @@
 import React from 'react';
 import "@testing-library/jest-dom";
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Registration from "../views/Registration";
 import axios from 'axios';
 
@@ -18,8 +18,6 @@ jest.mock('axios', () => ({
 
 
 describe('Registration', () => {
-
- 
   
   it('Making sure that user can send data with form', async () => {
 
@@ -27,7 +25,7 @@ describe('Registration', () => {
 
     const flushPromises = () => new Promise(resolve => setTimeout(resolve, 0));
     let inputValue = {target: {value: 'value'}};
-    const { getByTestId, getByText } = render(<Registration/>);
+    const { getByTestId } = render(<Registration/>);
     const firstNameInput = getByTestId("firstName");
     const lastNameInput = getByTestId("lastName");
     const emailInput = getByTestId("email");
@@ -54,7 +52,6 @@ describe('Registration', () => {
     fireEvent.click(robotButton);
     await flushPromises();
     fireEvent.click(submitButton);
-    
     await flushPromises();
     expect(axios.post).toHaveBeenCalled();
   })
