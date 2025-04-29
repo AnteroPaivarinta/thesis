@@ -61,9 +61,9 @@ const Admin = () => {
     
       const wb = new ExcelJS.Workbook();
       const ws = wb.addWorksheet('My Sheet2');
-      ws.addRow(['PersonID', 'First Name', 'Lastname', 'Gender', 'T-shirt', 'License Card', 'hopes', 'team', 'freeText', 'date']);
+      ws.addRow(['PersonID', 'First Name', 'Lastname', 'Gender', 'T-shirt', 'License Card', 'team', 'freeText', 'date']);
       rowData.forEach((el:IDataIndex)=> {
-        const arr =  [el.data.PersonID, el.data.firstName, el.data.lastName, el.data.gender, el.data.tshirt, el.data.licenseCard, el.data.hopes, el.data.team, el.data.freeText, el.data.date]
+        const arr =  [el.data.PersonID, el.data.firstName, el.data.lastName, el.data.gender, el.data.tshirt, el.data.licenseCard, el.data.team, el.data.freeText, el.data.date]
         ws.addRow(arr);
       })
     
@@ -154,7 +154,7 @@ const Admin = () => {
           { !value.update &&
             <div>
               { !value.deleting ?
-                <button data-testid='deleteButton' onClick={() => deletingWarning(index)}> DELETE</button> : 
+                <button data-testid='deleteButton' onClick={() => deletingWarning(index)}>DELETE</button> : 
                 <div>
                   <button data-testid='acceptDelete' onClick={() => onDelete(value.data.PersonID)}>Kyllä</button> 
                   <button>Ei</button> 

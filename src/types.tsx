@@ -9,7 +9,6 @@ export interface IData {
     tshirt: string;
     team: string;
     licenseCard: boolean;
-    hopes: string; 
     freeText: string;
     tasks: ITaskObject;
     date?: string;

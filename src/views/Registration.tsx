@@ -26,7 +26,6 @@ const Registration = () => {
     licenseCard: false,
     firstName:'',
     lastName: '',
-    hopes: '',
     team: '',
     age:'',
     tasks:{

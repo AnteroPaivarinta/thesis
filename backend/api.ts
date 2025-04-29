@@ -200,13 +200,13 @@ app.put('/userData', async function(req: any,res: any) {
     email,
     team,
     freeText,
-    hopes,
     tshirt,
     PersonID,
   } = req.body.data;
   connection.query(use);
-  const sql = `UPDATE PERSON SET firstName = ?, lastName = ?, age = ?, email =?, gender = ?, phone =?, tshirt =?, team =? , freeText = ?, hopes =? WHERE PersonID =?`;
-  connection.query(sql, [firstName, lastName, age, email, gender, phone, tshirt, team, freeText, hopes, PersonID]);
+  const sql = `UPDATE PERSON SET firstName = ?, lastName = ?, age = ?, email = ?, gender = ?, phone = ?, tshirt = ?, team = ?, freeText = ? WHERE PersonID = ?`;
+
+  connection.query(sql, [firstName, lastName, age, email, gender, phone, tshirt, team, freeText, PersonID]);
   return res.status(200).send('made query');
 });
 
