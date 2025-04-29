@@ -14,7 +14,8 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "ts-node": {
     "esm": true
