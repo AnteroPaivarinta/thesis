@@ -23,4 +23,4 @@ jobs:
         run: npm run build
 
       - name: Test
-        run: node --experimental-vm-modules ./node_modules/jest/bin/jest.js
+        run: npm test
