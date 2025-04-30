@@ -1,54 +1,56 @@
-# React + TypeScript + Vite
+# Officials Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fullstack application for managing sports event officials. This system allows users to register as officials for events, and provides administrative tools for managing those registrations.
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The goal of this project is to streamline the process of recruiting and managing officials (e.g. referees, volunteers, support staff) for sports events. The application enables user self-registration, stores data securely in a database, and supports administrative oversight with data export functionality.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### User Functionality
+- Fill out a registration form to apply as an official
+- Form data is saved to a backend database
+- Receive a confirmation email after submitting the form
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Admin Functionality
+- Log in using email and password
+- Receive a verification code via email for login
+- View a list of all registered users
+- Edit and delete user entries
+- Download registration data as an Excel (.xlsx) file
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Technologies Used
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Frontend:** React / Next.js / TypeScript
+- **Backend:** Node.js / Express / REST API
+- **Database:** PostgreSQL / MongoDB (based on your tech choice)
+- **Email service:** (e.g. Nodemailer, SendGrid, etc.)
+- **Authentication:** Email + Password + Email-based verification code
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Use Cases
+
+1. **User Registration**
+   - A person interested in becoming an official visits the app
+   - Fills out the registration form and submits it
+   - Receives a confirmation email
+
+2. **Admin Login**
+   - Admin enters email and password
+   - Receives a verification code via email
+   - Enters the code to access the admin dashboard
+
+3. **Admin Dashboard**
+   - View all registered users
+   - Update or delete user records
+   - Export all user data to Excel for reporting
+
+## Future Improvements
+
+- Multilingual support
+- Role-based access control
+- Event-specific registration
+
+---
+
+> This application helps simplify the logistics of sports event organization by making it easy to recruit and manage officials.
