@@ -30,6 +30,11 @@ CREATE TABLE PERSON (
     created_at VARCHAR(100)
 );
 
+CREATE TABLE VERIFYCODE (
+    email VARCHAR(100) PRIMARY KEY,
+    code VARCHAR(100) NOT NULL
+);
+
 INSERT INTO ADMIN (email, password) 
 VALUES ('antero.paivarinta@gmail.com', SHA2('securepassword', 256));
 

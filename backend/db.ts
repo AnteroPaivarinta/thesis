@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 
 dotenv.config();
 const PORT = 3307;
 
-export const connection = mysql.createConnection({
+export const connection = mysql.createPool({
   host     : process.env.WEB_HOSTNAME,
   user     : process.env.WEB_USERNAME,
   password : process.env.WEB_PASSWORD,

@@ -47,15 +47,14 @@ const Admin = () => {
     }
 
     const sendVerifyCode = () => {
-      axios.post(`${ip}/admin/verify`, {inputCode: inputCode}).then((response) => {
-        
+      axios.post(`${ip}/admin/verify`, {inputCode: inputCode, email: inputs.user}).then((response) => {
         console.log('Post succesful', response);
         if(response.data.token){
           setAdminObject({inputVerify: false, token: response.data.token, loginResponse: true})
           setInputVerify(false);
         } 
       });
-    }
+    };
 
     const makeExcel = async() => {
     
