@@ -29,5 +29,3 @@ const PORT_API = 3001
 app.listen(PORT_API, () => {
     console.log(`Server running on port ${PORT_API}`)
 })
-
-export default app;

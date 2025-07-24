@@ -23,4 +23,22 @@ export const verifyUserToken = (req:any, res: any, next: any) => { // Middleware
   } 
 };
 
+
+export const verifyUserTokenLamda = (token: string ): boolean => { // Middleware
+
+  const jwtSecret:string | undefined = process.env.JWT_SECRET;
+  if( jwtSecret ) {
+    try {
+      jwt.verify(token, jwtSecret);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  } else {
+    return false;
+  } 
+};
+
+
+
 export default verifyUserToken;
