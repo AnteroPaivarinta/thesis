@@ -47,10 +47,7 @@ The goal of this project is to streamline the process of recruiting and managing
 
 ## Future Improvements
 
-- Multilingual support
-- Role-based access control
-- Event-specific registration
-
+- Azure
+## Registration Diagram
+ ![Logo](registration_DIAGRAM.png)
 ---
-
-> This application helps simplify the logistics of sports event organization by making it easy to recruit and manage officials.
