@@ -19,7 +19,7 @@ The goal of this project is to streamline the process of recruiting and managing
 - View a list of all registered users
 - Edit and delete user entries
 - Download registration data as an Excel (.xlsx) file
-![Rekisteröitymisnäkymä](registration_DIAGRAM.png)
+   ![Logo](registration_DIAGRAM.png)
 ## Technologies Used
 
 - **Frontend:** React / Next.js / TypeScript
