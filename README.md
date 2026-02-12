@@ -48,5 +48,5 @@ The goal of this project is to streamline the process of recruiting and managing
 
 - Azure
 ## Registration Diagram
- ![Logo](registration_DIAGRAM.png)
+ ![Logo](registration_diagram.PNG)
 ---
