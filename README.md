@@ -25,7 +25,6 @@ The goal of this project is to streamline the process of recruiting and managing
 - **Frontend:** React / Next.js / TypeScript
 - **Backend:** Node.js / Express / REST API
 - **Database:** PostgreSQL / MongoDB (based on your tech choice)
-- **Email service:** (e.g. Nodemailer, SendGrid, etc.)
 - **Authentication:** Email + Password + Email-based verification code
 
 ## Use Cases
